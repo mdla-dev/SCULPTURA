@@ -1,0 +1,39 @@
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+}
+
+base {
+    archivesName = "${rootProject.property('archives_base_name')}-forge-1.18.2"
+}
+
+dependencies {
+    implementation project(":core")
+    implementation project(":common")
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.11.4"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.11.4"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.11.4"
+}
+
+jar {
+    from(project(":core").sourceSets.main.output)
+    from(project(":common").sourceSets.main.output)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes(
+            "Specification-Title": "sculptura",
+            "Specification-Vendor": "Sculptura Team",
+            "Specification-Version": "1",
+            "Implementation-Title": "sculptura-forge-1.18.2",
+            "Implementation-Version": project.version,
+            "Forge-Minecraft-Version": "1.18.2",
+            "Forge-Version": rootProject.property("forge_1_18_2")
+        )
+    }
+}

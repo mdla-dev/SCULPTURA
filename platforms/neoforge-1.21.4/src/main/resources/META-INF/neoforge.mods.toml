@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="Apache-2.0"
+
+[[mods]]
+modId="sculptura"
+version="1.0.0"
+displayName="SCULPTURA"
+authors="SCULPTURA Engineering Team"
+description='''
+Professional visual 3D voxel editor, terrain sculptor, procedural generator, and smart material system for Minecraft 1.21.4.
+'''
+
+[[dependencies.sculptura]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.4.161,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.sculptura]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.4,1.21.5)"
+    ordering="NONE"
+    side="BOTH"

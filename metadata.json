@@ -1,0 +1,6 @@
+{
+  "name": "SCULPTURA",
+  "description": "Professional visual 3D voxel editor and terrain sculpting mod for Minecraft Java Edition (Fabric, Forge, NeoForge).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

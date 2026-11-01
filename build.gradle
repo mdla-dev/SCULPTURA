@@ -1,0 +1,44 @@
+plugins {
+    id "java-library"
+}
+
+allprojects {
+    group = property("maven_group")
+    version = property("mod_version")
+
+    repositories {
+        mavenCentral()
+        maven {
+            name = "Fabric"
+            url = "https://maven.fabricmc.net/"
+        }
+        maven {
+            name = "NeoForged"
+            url = "https://maven.neoforged.net/releases/"
+        }
+        maven {
+            name = "MinecraftForge"
+            url = "https://maven.minecraftforge.net/"
+        }
+        maven {
+            name = "Mojang"
+            url = "https://libraries.minecraft.net/"
+        }
+    }
+}
+
+subprojects {
+    apply plugin: "java-library"
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = "UTF-8"
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "skipped", "failed"
+            exceptionFormat "full"
+        }
+    }
+}

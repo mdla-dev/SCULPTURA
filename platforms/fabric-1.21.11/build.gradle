@@ -1,0 +1,40 @@
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}
+
+base {
+    archivesName = "${rootProject.property('archives_base_name')}-fabric-1.21.11"
+}
+
+dependencies {
+    implementation project(":core")
+    implementation project(":common")
+    compileOnly "net.fabricmc:fabric-loader:${rootProject.property('fabric_loader_version')}"
+    testImplementation "net.fabricmc:fabric-loader:${rootProject.property('fabric_loader_version')}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.11.4"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.11.4"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.11.4"
+}
+
+jar {
+    from(project(":core").sourceSets.main.output)
+    from(project(":common").sourceSets.main.output)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes(
+            "Specification-Title": "sculptura",
+            "Specification-Version": project.version,
+            "Implementation-Title": "sculptura-fabric-1.21.11",
+            "Implementation-Version": project.version,
+            "Fabric-Minecraft-Version": "1.21.11",
+            "Fabric-Loader-Version": rootProject.property("fabric_loader_version")
+        )
+    }
+}

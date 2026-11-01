@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "sculptura",
+  "version": "1.0.0",
+  "name": "SCULPTURA",
+  "description": "Professional visual 3D voxel editor, terrain sculptor, procedural generator, and smart material system for Minecraft 1.21.1.",
+  "authors": [
+    "SCULPTURA Engineering Team"
+  ],
+  "license": "Apache-2.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.sculptura.platform.fabric.v1_21_1.SculpturaFabric1211Mod"
+    ],
+    "client": [
+      "dev.sculptura.platform.fabric.v1_21_1.SculpturaFabric1211Mod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

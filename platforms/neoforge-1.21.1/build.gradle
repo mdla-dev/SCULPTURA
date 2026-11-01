@@ -1,0 +1,39 @@
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}
+
+base {
+    archivesName = "${rootProject.property('archives_base_name')}-neoforge-1.21.1"
+}
+
+dependencies {
+    implementation project(":core")
+    implementation project(":common")
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.11.4"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.11.4"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.11.4"
+}
+
+jar {
+    from(project(":core").sourceSets.main.output)
+    from(project(":common").sourceSets.main.output)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes(
+            "Specification-Title": "sculptura",
+            "Specification-Vendor": "Sculptura Team",
+            "Specification-Version": "1",
+            "Implementation-Title": "sculptura-neoforge-1.21.1",
+            "Implementation-Version": project.version,
+            "NeoForge-Minecraft-Version": "1.21.1",
+            "NeoForge-Version": rootProject.property("neoforge_1_21_1")
+        )
+    }
+}
